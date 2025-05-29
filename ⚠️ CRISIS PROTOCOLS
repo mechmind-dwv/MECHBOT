@@ -1,0 +1,6 @@
+## ⚠️ CRISIS PROTOCOLS
+| Code Red | Procedure |
+|----------|-----------|
+| SEAL-001 | `initiate_lockdown.sh` |
+| SEAL-002 | `purge_vulnerabilities.py --nuke` |
+| SEAL-003 | `deploy_emergency_patches.sh --override` |
