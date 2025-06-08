@@ -38,10 +38,3 @@ runs:
       run: |
         echo "🚨 DEPLOYING EMERGENCY PATCHES"
         ./mechbot_defense.sh --override
-from mechmind_security import WarRoom
-
-war_room = WarRoom(
-    threat_level="DEFCON 1",
-    scanners=["ai-dependency", "codeql", "zero-day-radar"],
-    alert_mode="continuous"
-)
