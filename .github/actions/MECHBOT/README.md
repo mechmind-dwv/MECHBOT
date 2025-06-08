@@ -1,6 +1,4 @@
----
-
-## **4. 📖 MECHBOT_README.md** *(Strategic Briefing)*
+## ** 📖 MECHBOT_README.md** *(Strategic Briefing)*
 
 # 🛡️ MECHANICAL MIND DEFENSE PROTOCOL v3.0
 
