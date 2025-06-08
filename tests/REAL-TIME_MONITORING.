@@ -1,5 +1,3 @@
-## 📡 REAL-TIME MONITORING
-```python
 from mechmind_security import WarRoom
 
 war_room = WarRoom(
