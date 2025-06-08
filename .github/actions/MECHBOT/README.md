@@ -1,7 +1,7 @@
 ---
 
 ## **4. 📖 MECHBOT_README.md** *(Strategic Briefing)*
-```markdown
+
 # 🛡️ MECHANICAL MIND DEFENSE PROTOCOL v3.0
 
 ![MechBot-9000 Banner](https://i.imgur.com/MECHBOT.png)
@@ -49,6 +49,3 @@ war_room = WarRoom(
 - Critical updates trigger **Tactical Pull Requests** ⚔️
 
 ![MechMind Defense Matrix](https://i.imgur.com/MATRIX.gif)
-```
-
----
