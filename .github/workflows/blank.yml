@@ -1,36 +1,73 @@
-# This is a basic workflow to help you get started with Actions
+name: MECHBOT-9000 CI/CD Pipeline
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
   pull_request:
     branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+env:
+  PYTHON_VERSION: '3.12'
+  SECRET_TOKEN: ${{ secrets.WEBHOOK_SECRET }}
+
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  security-scan:
+    name: Security Scan
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          
+      - name: Install dependencies
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install safety bandit
+          
+      - name: Run security checks
+        run: |
+          safety check --full-report
+          bandit -r mechmind/
+          
+  build-test:
+    name: Build and Test
+    needs: security-scan
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Build
+        run: |
+          echo "Building MECHBOT-9000..."
+          # Comandos de build aquí
+          
+      - name: Run tests
+        run: |
+          python -m pytest tests/ -v
+          
+  deploy:
+    name: Deploy
+    needs: build-test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Notify deployment
+        run: |
+          curl -X POST \
+          -H "Authorization: token ${{ secrets.API_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d '{"event":"deploy","ref":"${{ github.ref }}"}' \
+          https://tuservidor.com/api/deploy-webhook
