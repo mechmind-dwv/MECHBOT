@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/home/MECHBOT/mechvenv/bin/python
+#!/home/min/MECHBOT/mechvenv/bin/python3.12
 # -*- coding: utf-8 -*-
 import re
 import sys

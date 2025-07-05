@@ -1,0 +1,10 @@
+requests>=2.31.0
+python-dotenv>=1.0.0
+pyyaml>=6.0
+cryptography>=42.0.0
+# Alternativas disponibles
+dependency-scan==3.2.0  # Reemplazo para security-scanner
+python-codeql==2.14.5
+vault-tools==1.9.1
+cryptography>=45.0.0
+cryptography>=45.0.0
