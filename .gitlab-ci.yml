@@ -1,0 +1,30 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  AWS_DEFAULT_REGION: us-east-1
+
+build:
+  stage: build
+  image: docker:latest
+  script:
+    - docker build -t mechmind/mechbot-core:latest .
+
+test-ia:
+  stage: test
+  image: python:3.12
+  script:
+    - pip install pytest
+    - pytest ia/tests/
+
+deploy-prod:
+  stage: deploy
+  image: amazon/aws-cli
+  only:
+    - main
+  script:
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+    - docker push mechmind/mechbot-core:latest
+    - aws ecs update-service --cluster mechbot-cluster --service mechbot-service --force-new-deployment
