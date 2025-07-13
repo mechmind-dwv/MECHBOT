@@ -1,4 +1,22 @@
-requests>=2.31.0
+# ================================================
+# 💣 MECHANICAL MIND ARMORY CATALOG v3.0
+# ================================================
+# STRATEGIC DEPENDENCIES FOR TOTAL DOMINATION
+# ================================================
+
+# 🛡️ CORE WEAPONS SYSTEMS
+ai-dependency-scanner==3.0.1  # Main battle algorithm
+codeql-analyzer==2.14.5      # Quantum threat detection
+
+# 🔧 SUPPORT MODULES
+vault-enforcer==1.9.0        # Credential shielding
+git-commando==2.3.4          # Stealth repository ops
+slack-warhorn==0.7.2         # Real-time alert system
+
+# ⚡ ELITE PLUGINS
+mechmind-threat-radar==1.4.0  # Zero-day vulnerability prediction
+dependency-ninja==2.1.3       # Silent patch deployment
+
 python-dotenv>=1.0.0
 pyyaml>=6.0
 cryptography>=42.0.0
@@ -8,3 +26,8 @@ python-codeql==2.14.5
 vault-tools==1.9.1
 cryptography>=45.0.0
 cryptography>=45.0.0
+requests>=2.31.0
+# ================================================
+# 🚀 INSTALLATION COMMAND:
+# pip install -r MECHBOT_REQUIREMENTS.txt --no-index
+# ================================================ requests>=2.31.0
