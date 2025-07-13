@@ -1,6 +1,8 @@
 name: MECHBOT-9000 CI/CD
 
-on: [push, pull_request]
+push:
+on
+pull_request:
 
 jobs:
   test:
